@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Акции дня / ООО "ШАКМАН РУС"</title>
+<style>
+    *{
+        font-family: Tahoma;
+    }
+    body{
+        width: 100%;
+        background: radial-gradient(circle, rgb(208, 242, 222) 10%, rgb(54, 158, 166) 95%);
+        z-index: -1000;
+        overflow-x: hidden;    
+    }
+    .wrap{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 15px;
+        z-index: -100;
+        gap: 100px;
+    }
+    .header{
+        width: 100%;
+        height: 100%;
+        max-height: 250px;
+        background: linear-gradient(128deg, rgb(239, 250, 243 , 50%) 10%, rgb(212, 252, 255 , 50%) 95%);
+        box-shadow: 0 0 15px 5px rgb(255 255 255 / 50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+    }
+    .content{
+        background-color: rgb(255, 255, 255 , 50%);
+        box-shadow: 0 0 15px 5px rgb(255 255 255 / 50%); 
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        z-index: -1;
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }
+    .content_border{
+        max-width: 1600px;
+        min-height: 800px;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-content: center;
+        align-items: center
+    }
+    .futter{
+        box-shadow: 0 0 15px 5px rgb(255 255 255 / 50%);
+        max-height: 500px;
+        height: 100%;
+    }
+    .header_lvl_1{
+        max-width: 1600px;
+        width: 100%;
+        max-height: 250px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        position: relative;
+        padding: 10px;    
+    }
+    .header_lvl_2{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 30px;
+        align-items: center;
+    }
+    .header_menu1{ height: 100px;flex-direction: column;justify-content: flex-end;gap: 10px;}
+    .header_menu2{ height: 150px; align-content: center;}
+    .ManagerProfile{
+        position: absolute;
+        right: -100px;
+        top: -15px;
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        align-items: center;
+        z-index: 100;   
+    }
+    .ManagerPhoto{
+        max-height: 300px;
+        max-width: 300px;
+        z-index: 2;    
+    }
+    .ManagerInfo{
+        background-color: #d4fcff;
+        border: solid 2px orange;
+        border-radius: 0px 0px 50px 50px;
+        display: flex;
+        flex-direction: column;
+        max-width: 250px;
+        width: 100%;
+        /*height: 0px;*/
+        max-height: 0px;
+        height: 100%;
+        position: relative;
+        top: -120px;
+        z-index: 1;
+        gap:10px;
+        padding: 0px 20px 20px 20px;
+        overflow: hidden;
+        transition: transform, max-height 400ms ease-in;
+    }
+    .ManagerName{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 10px;
+        margin-top: 70px;
+    }
+    .ManagerBlock1{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 5px;
+    }
+    .ManagerBlock2{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 5px;
+    }
+    .ManagerBlock3{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+    }
+    .ManagerBlock4{
+        text-align: center;    
+    }
+    .OrganisationProfile{
+        position: absolute;
+        left: -140px;
+        top: -45px;       
+    }
+    .OrganisationPhoto{
+        max-height: 370px;
+        max-width: 370px;
+        transition: transform .7s ease-in-out;
+    }
+    .OrganisationPhoto:hover{
+        transform: rotate(360deg);    
+    }
+    a{    
+        text-decoration: none;
+        color: black;
+        padding: 0;
+        word-break: break-all;
+        transition: all 0.3s ease;
+    }
+    a:hover:not(.ManagerBlock3 a){
+        color: rgb(66, 111, 245);
+        font-size: 36px;
+    }
+    .ManagerBlock3 a:hover{
+        color: rgb(66, 111, 245);
+        scale: 1.5;
+    }
+    .contentBlock{
+        display: block;
+        transform-origin: center;
+        opacity: 1;
+        transition: display 0.5s allow-discrete, all 0.5s ease;
+    }
+    .collapsed{
+        height: 0px;
+        transform: scaleX(0);
+        opacity: 0;
+        transition: display 0.5s allow-discrete, all 0.5s ease;
+    }
+    .content span {
+        font-size: 36px;
+    }
+    .CommerseColumns{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 20px;
+    }
+    .CommerseColumnLeft{
+        display: flex;
+        flex-direction: column;
+    }
+    .CommerseColumnRight{
+        display: flex;
+        flex-direction: column;        
+    }
+    .Colontitle{
+        min-width: 300px;
+        padding: 100px;
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+    .ColontitleBorderImg{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+    .BottomTxt{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin: auto auto 0px;
+        align-items: center;
+        padding-top: 100px;
+    }
+    .BottomTxt span{
+        font-size: 16px;
+
+    }
+    th, td {
+          border: 1px solid #000000; /* Sets the line thickness, style, and color */
+          padding: 8px;              /* Adds spacing inside the cells */
+    }
+    .futter{
+        min-height: 150px;
+        max-height: 400px;
+        background: linear-gradient(128deg, rgb(239, 250, 243 , 50%) 10%, rgb(212, 252, 255 , 50%) 95%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: auto auto 0;
+        width: 100%;
+    }
+    .futter_border{
+        max-width: 1600px;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    @media (max-width: 600px){
+        .ManagerPhoto{
+            display: none;
+        }
+        .ManagerProfile{
+            display: none;
+        }
+        .OrganisationPhoto{
+            display: none;
+        }
+        .header_menu1{
+            display: none;
+        }
+        .header{
+            font-size: 4px;
+        }
+        a:hover:not(.ManagerBlock3 a){
+            color: rgb(66, 111, 245);
+            font-size: 6px;
+        }
+        .content span {
+            font-size: 10px;
+        }
+        .BottomTxt span{
+            font-size: 8px;
+        }
+    }
+    
+    @media (min-width:600px) and (max-width: 1100px){
+        .ManagerPhoto{
+            display: none;
+        }
+        .ManagerProfile{
+            display: none;
+        }
+        .OrganisationPhoto{
+            display: none;
+        }
+        .header_menu1{
+            display: none;
+        }
+        .header{
+            font-size: 12px;
+        }
+        a:hover:not(.ManagerBlock3 a){
+            color: rgb(66, 111, 245);
+            font-size: 18px;
+        }
+        .content span {
+            font-size: 18px;
+        }
+        .BottomTxt span{
+            font-size: 10px;   
+        }
+    }
+</style></head>
+
+<body>
+    <div class="wrap">
+        <div class="header">
+            <div class="header_lvl_1">
+                <div class="header_lvl_2 header_menu1">
+                    <h1 style="/* margin-bottom:0px; */font-size: 16px;margin: 0;">ООО "ШАКМАН РУС"</h1>
+                    <h1 style="/* margin-bottom:0px; */color: red;margin: 0px;">Товар дня!!!</h1></div>
+                <div class="header_lvl_2 header_menu2">
+                    <a href="#H1" style="color: rgb(66, 111, 245);" ><h4>О КОМПАНИИ</h4></a>
+
+                    <a href="#H3"><h4>ПРЕДМЕТ ПРЕДЛОЖЕНИЯ</h4></a>
+                </div>
+                <div class="ManagerProfile">
+                    <img class="ManagerPhoto" src="https://cdn.abcp.ru/f/703770">
+                    <div class="ManagerInfo">
+                        <div style="display: flex; flex-direction: row;flex-wrap: nowrap;justify-content: space-around; margin-top: 70px;">
+                            <div class="ManagerWorkYearsIco" style="display:flex; flex-direction: column; justify-content: flex-end">
+                            <img src="https://cdn.abcp.ru/f/703826" style="height: 100px; width: 100px;">
+                            </div>
+                            <div class="ManagerName">
+                                <span><strong>Биттуев</strong></span>
+                                <span><strong>Аслан</strong></span>
+                                <span><strong>Алеханович</strong></span>
+                            </div>    
+                        </div>
+                        <div class="ManagerBlock1">
+                            <span>Должность:</span>
+                            <span style="text-align: end;"><strong>Старший менеджер по продажам</strong></span>
+                        </div>
+                        <div class="ManagerBlock2">
+                            <span>Отдел:</span>
+                            <span><strong>Москва</strong></span>
+                        </div>
+                        <div class="ManagerBlock3">
+                            <span>Контакты:</span>
+                            <a href="tel:89647730667" style="padding: 0;"><span style="text-align: end; margin-right: 10px;">+79647730667</span></a>
+                        </div>
+                        <div class="ManagerBlock4">
+                            <span>"Оперативно подбираем запчасти на вашу грузовую технику. Согласовываем индивидуальные партнерские отношения. Прокладываем дорогу в светлое будущее для вашей логистики!"</span>
+                        </div>
+                    </div>
+                    <span style="
+                        position: relative;
+                        top: -175px;
+                        left: -250px;
+                        font-size: 20px;
+                        opacity: 0.5;
+                    ">Наведись на меня</span>
+                </div>
+                <div class="OrganisationProfile">
+                    <img class="OrganisationPhoto" src="https://cdn.abcp.ru/f/703769">
+                    <span style="
+                        position: relative;
+                        top: -175px;
+                        left: 15px;
+                        font-size: 20px;
+                        opacity: 0.5;
+                    ">Нажми меня</span>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="content_border">
+                <div class="contentBlock" id="CB1">
+                    <div class="Colontitle">
+                        <img class="ColontitleBorderImg" src="https://cdn.abcp.ru/f/703824">
+                        <span>ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "ШАКМАН РУС"</span>
+                        <span>ИНН 7730306347 КПП 773001001 ОГРН 1237700402840</span>
+                        <span>Юридический адрес: 111672, Г,МОСКВА, ВН.ТЕР.Г.МУНИЦИПАЛЬНЫЙ ОКРУГ НОВОКОСИНО, УЛ.СУЗДАЛЬСКАЯ, Д.46</span>
+                        <span>Тел.: +7(964)773-06-67, E-mail: mng1@shacmancom.ru</span>
+                    </div>
+                </div>
+                <div class="contentBlock collapsed" id="CB3">
+                    <div class="Colontitle">
+                        <img class="ColontitleBorderImg" src="https://cdn.abcp.ru/f/703824">
+                        <span>Акционный список. Время акции ограниченно: до 03.08.2026!</span>
+                        <table>
+                            <tr>
+                                <th>Наименование товара</th>
+                                <th>Предложенная цена</th>
+                            </tr>
+                            
+                            <tr>
+                                <td>
+                                    <span>Болт постели коленвала SHACMAN WP13 WP12 612630010057 ОРИГИНАЛ</span>    
+                                </td>
+                                <td>
+                                    <span>9999р.</span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <span>Болт постели коленвала SHACMAN WP13 WP12 612630010057 ОРИГИНАЛ</span>    
+                                </td>
+                                <td>
+                                    <span>9999р.</span>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
+                </div>
+                <div class="BottomTxt">  
+                    <span>ООО «Шакман Рус» — официальный дилер SHACMAN в России и надежный поставщик запчастей для китайской коммерческой спецтехники.</span>
+                    <span>Мы предлагаем оригинальные детали SHACMAN ,а также комплектующие для других популярных марок:</span>
+                    <span>DONGFENG, FAW, FOTON, HOWO/SITRAK, IVECO/HONGYAN, JAC с гарантией качества,</span>
+                    <span>быстрой доставкой по России и профессиональной поддержкой на каждом этапе.</span>
+                </div>
+            </div>
+        </div>
+        <div class="futter">
+            <div class="futter_border">любая билиберда</div>
+        </div>
+    </div>
+
+
+<script>
+////////////////////////////// ФУНКЦИЯ ПОКАЗА ПРОФИЛЯ СОТРУДНИКА///////////////////////////////////////////////
+function ShowHiddenBlock(Target){
+    let ManagerBlock = document.querySelector(".ManagerPhoto");
+    let BlockChilds = [...ManagerBlock.nextElementSibling.querySelectorAll("*")];
+    BlockChilds.push(ManagerBlock, ManagerBlock.nextElementSibling);
+    if(BlockChilds.includes(Target)){
+        ManagerBlock.nextElementSibling.style.maxHeight = ManagerBlock.nextElementSibling.scrollHeight + "px";      
+    }
+    else
+    {
+        ManagerBlock.nextElementSibling.style.maxHeight = null;
+        ManagerBlock.nextElementSibling.style.maxHeight = ManagerBlock.nextElementSibling.scrollHeight - "px";
+    }
+}
+////////////////////////////// ФУНКЦИЯ ПОКАЗА ПРОФИЛЯ СОТРУДНИКА///////////////////////////////////////////////
+
+////////////////////////////// ФУНКЦИЯ ДЛЯ ГИПЕРССЫЛОК///////////////////////////////////////////////
+    let ContentBlock1 = document.querySelector("#CB1");
+    let ContentBlock3 = document.querySelector("#CB3");
+function HyperTextClick(){
+    let HyperHrefs = document.querySelectorAll('.header_lvl_2 a');
+    console.log(HyperHrefs);
+    for (let element of HyperHrefs){
+        element.addEventListener('click', function(event){
+            event.preventDefault();
+            switch(element.hash){
+            case "#H1":
+
+                ContentBlock3.classList.add("collapsed");
+                setTimeout(() => {
+                    requestAnimationFrame(() => {
+                        for (elem of HyperHrefs){
+                            elem.setAttribute("style", "color: black;");
+                        }
+                        element.setAttribute("style", "color: rgb(66, 111, 245);");
+                        ContentBlock1.classList.remove('collapsed');
+                    });
+                }, 500);
+                break;
+            case "#H3":
+                ContentBlock1.classList.add("collapsed");
+
+                setTimeout(() => {
+                    requestAnimationFrame(() => {
+                        for (elem of HyperHrefs){
+                            elem.setAttribute("style", "color: black;");
+                        }
+                        element.setAttribute("style", "color: rgb(66, 111, 245);");
+                        ContentBlock3.classList.remove('collapsed');
+                    });
+                }, 500);
+                break;        
+            }
+        });
+    }
+}
+
+////////////////////////////// ФУНКЦИЯ ДЛЯ ГИПЕРССЫЛОК///////////////////////////////////////////////
+
+document.addEventListener("mouseover", function(element){
+    ShowHiddenBlock(element.target);    
+});    
+document.addEventListener("DOMContentLoaded", function() {
+});
+let VmtruckHref = document.querySelector(".OrganisationPhoto");
+VmtruckHref.addEventListener("click", function(event){
+    let url = "https://vmtruck.ru";
+    window.open(url);    
+});
+
+HyperTextClick();
+</script>
+
+
+
+</body></html>
